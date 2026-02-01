@@ -127,7 +127,6 @@
             margin-bottom: 30px;
         }
 
-        /* --- ANIMATION STYLES --- */
         .reveal {
             opacity: 0;
             transition: all 1.2s cubic-bezier(0.17, 0.55, 0.55, 1);
@@ -282,7 +281,6 @@
             margin-bottom: 40px;
         }
 
-        /* --- BENTO GRID SKILLS (UPDATED) --- */
         .bento-grid {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
@@ -306,19 +304,10 @@
             transform: translateY(-5px);
         }
 
-        /* Recruitment: Tall */
         .item-rec { grid-column: span 4; grid-row: span 2; }
-        
-        /* CompBen: Large (Top Priority) */
         .item-comben { grid-column: span 8; grid-row: span 2; }
-        
-        /* People Dev: Standard */
         .item-dev { grid-column: span 5; grid-row: span 2; }
-
-        /* OD: Large (Top Priority) */
         .item-od { grid-column: span 7; grid-row: span 2; }
-
-        /* HR Automation: Minimal (Additional) */
         .item-auto { grid-column: span 12; grid-row: span 1; }
 
         .bento-item h4 {
@@ -333,7 +322,7 @@
         .bento-item .cat-title {
             font-family: 'Instrument Serif', serif;
             font-size: clamp(1.5rem, 3vw, 2.2rem);
-            margin-bottom: 25px; /* Added more space below title */
+            margin-bottom: 25px;
             line-height: 1.1;
             color: var(--text-main);
         }
@@ -342,8 +331,8 @@
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin-top: 0; /* Move tags to top (after title) */
-            margin-bottom: auto; /* Push content down if any */
+            margin-top: 0;
+            margin-bottom: auto;
         }
 
         .tag {
@@ -401,7 +390,6 @@
             font-size: 0.85rem;
         }
 
-        /* Responsive Grids */
         @media (max-width: 1024px) {
             .item-rec { grid-column: span 5; }
             .item-comben { grid-column: span 7; }
@@ -437,7 +425,6 @@
     </nav>
 
     <main>
-        <!-- HERO SECTION -->
         <section id="hero">
             <div id="about" style="position: absolute; top: 0;"></div>
             <div class="profile-container">
@@ -461,7 +448,6 @@
             </a>
         </section>
 
-        <!-- MARQUEE -->
         <div class="skills-marquee">
             <div class="marquee-content">
                 <span class="marquee-item">HR Web Development</span>
@@ -474,7 +460,6 @@
                 <span class="marquee-item">Employee Portal Development</span>
                 <span class="marquee-item">Workflow Optimization</span>
                 <span class="marquee-item">Labor Law Algorithm Compliance</span>
-                <!-- Loop -->
                 <span class="marquee-item">HR Web Development</span>
                 <span class="marquee-item">Google Apps Script Automation</span>
                 <span class="marquee-item">HRIS Custom Solutions</span>
@@ -488,13 +473,11 @@
             </div>
         </div>
 
-        <!-- WORKING EXPERIENCE -->
         <section id="experience">
             <div class="section-header">
                 <h2>Working Experience</h2>
             </div>
 
-            <!-- 1. HR.DEH -->
             <div class="exp-card reveal reveal-left">
                 <div class="exp-header">
                     <div>
@@ -521,7 +504,6 @@
                 </div>
             </div>
 
-            <!-- 2. FABRON -->
             <div class="exp-card reveal reveal-right">
                 <div class="exp-header">
                     <div>
@@ -540,7 +522,6 @@
                 </ul>
             </div>
 
-            <!-- 3. SHAFWAH GROUP -->
             <div class="exp-card reveal reveal-left">
                 <div class="exp-header">
                     <div>
@@ -570,7 +551,6 @@
                 </div>
             </div>
 
-            <!-- 4. PAHAMIFY SENIOR -->
             <div class="exp-card reveal reveal-right">
                 <div class="exp-header">
                     <div>
@@ -598,7 +578,6 @@
                 </div>
             </div>
 
-            <!-- 5. PAHAMIFY JUNIOR -->
             <div class="exp-card reveal reveal-left">
                 <div class="exp-header">
                     <div>
@@ -624,14 +603,12 @@
             </div>
         </section>
 
-        <!-- PROFESSIONAL SKILLS (BENTO GRID - TAGS AT TOP) -->
         <section id="skills">
             <div class="section-header">
                 <h2>Professional Skills</h2>
             </div>
             
             <div class="bento-grid">
-                <!-- 1. Compensation and Benefits (Large & Top) -->
                 <div class="bento-item item-comben reveal reveal-right">
                     <h4>Total Rewards</h4>
                     <div class="cat-title">Compensation and Benefits Management</div>
@@ -645,7 +622,6 @@
                     </div>
                 </div>
 
-                <!-- 2. Recruitment (Tall) -->
                 <div class="bento-item item-rec reveal reveal-left">
                     <h4>Talent Acquisition</h4>
                     <div class="cat-title">Recruitment Strategy</div>
@@ -658,7 +634,6 @@
                     </div>
                 </div>
 
-                <!-- 3. Organizational Development (Large & Core) -->
                 <div class="bento-item item-od reveal">
                     <h4>Strategy & Alignment</h4>
                     <div class="cat-title">Organizational Development</div>
@@ -672,7 +647,6 @@
                     </div>
                 </div>
 
-                <!-- 4. People Development -->
                 <div class="bento-item item-dev reveal reveal-left">
                     <h4>Growth & Learning</h4>
                     <div class="cat-title">People Development</div>
@@ -684,7 +658,6 @@
                     </div>
                 </div>
 
-                <!-- 5. HR Automation (Additional - Wide bottom) -->
                 <div class="bento-item item-auto reveal">
                     <h4>Additional Expertise</h4>
                     <div class="cat-title">Human Resources Automation</div>
@@ -698,7 +671,6 @@
             </div>
         </section>
 
-        <!-- EDUCATION -->
         <section id="education">
             <div class="section-header">
                 <h2>Education & Certifications</h2>
