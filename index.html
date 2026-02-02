@@ -6,7 +6,7 @@
     <title>Muhammad Fachrully | HR Transformation & Digitization Specialist</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;600;700&family=Poppins:wght@300;400;600&family=Montserrat:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #0a0a0a;
@@ -15,721 +15,486 @@
             --text-main: #f5f5f5;
             --text-dim: #a3a3a3;
             --accent: #6366f1;
+            --glow-color: #1e1b4b;
             --glass: rgba(255, 255, 255, 0.03);
+            --font-main: 'Inter', sans-serif;
+            --font-heading: 'Instrument Serif', serif;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text-main);
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        .bg-glow {
+        /* Loading Screen Style */
+        #preloader {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 50% -20%, #1e1b4b 0%, transparent 50%);
-            z-index: -1;
-            pointer-events: none;
+            background-color: var(--bg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s;
+        }
+
+        .loader-logo {
+            font-family: 'Instrument Serif', serif !important;
+            font-size: 2.5rem;
+            color: var(--text-main);
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        .loader-bar-container {
+            width: 200px;
+            height: 2px;
+            background: var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .loader-bar {
+            width: 0%;
+            height: 100%;
+            background: var(--accent);
+            box-shadow: 0 0 15px var(--accent);
+            transition: width 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .loaded #preloader {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* Base Content Style */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            line-height: 1.5;
+            overflow-x: hidden;
+            transition: background-color 0.5s ease;
+        }
+
+        body:not(.loaded) {
+            overflow: hidden;
+        }
+
+        .bg-glow {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% -20%, var(--glow-color) 0%, transparent 50%);
+            z-index: -1; pointer-events: none;
         }
 
         nav {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: fit-content;
-            padding: 12px 30px;
-            background: var(--glass);
-            backdrop-filter: blur(15px);
-            border: 1px solid var(--border);
-            border-radius: 100px;
-            z-index: 1000;
-            display: flex;
-            gap: 25px;
+            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+            width: fit-content; padding: 10px 25px; background: var(--glass);
+            backdrop-filter: blur(15px); border: 1px solid var(--border);
+            border-radius: 100px; z-index: 1000; display: flex; gap: 20px;
         }
 
         nav a {
-            color: var(--text-dim);
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: 0.3s;
+            color: var(--text-dim); text-decoration: none; font-size: 0.8rem;
+            font-weight: 500; transition: 0.3s;
         }
-
-        nav a:hover {
-            color: var(--text-main);
-        }
+        nav a:hover { color: var(--text-main); }
 
         #hero {
-            min-height: 80vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 120px 20px 60px 20px;
+            min-height: 70vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            padding: 100px 20px 40px 20px;
         }
 
-        .profile-container {
-            position: relative;
-            margin-bottom: 40px;
-        }
-
+        .profile-container { margin-bottom: 30px; }
         .profile-img {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 1px solid var(--border);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            z-index: 2;
-            position: relative;
+            width: 160px; height: 160px; border-radius: 50%; object-fit: cover;
+            border: 1px solid var(--border); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            position: relative; background: var(--surface);
         }
 
-        h1 {
-            font-family: 'Instrument Serif', serif;
-            font-size: clamp(3rem, 8vw, 5rem);
-            font-weight: 400;
-            line-height: 1.1;
-            margin-bottom: 20px;
-        }
-
-        .hero-desc {
-            font-size: 1.05rem;
-            color: var(--text-dim);
-            max-width: 850px;
-            margin-bottom: 40px;
-            text-align: center;
-        }
-
+        h1, h2, h3, .skill-main-title { font-family: var(--font-heading); font-weight: 400; }
+        h1 { font-size: clamp(2.5rem, 7vw, 4.5rem); line-height: 1.1; margin-bottom: 15px; }
+        .hero-desc { font-size: 1rem; color: var(--text-dim); max-width: 750px; margin-bottom: 30px; }
+        
         .contact-info {
-            color: var(--text-dim);
-            font-size: 0.9rem;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 30px;
+            color: var(--text-dim); font-size: 0.85rem; display: flex;
+            flex-wrap: wrap; justify-content: center; gap: 15px; margin-bottom: 25px;
         }
 
-        .reveal {
-            opacity: 0;
-            transition: all 1.2s cubic-bezier(0.17, 0.55, 0.55, 1);
-            will-change: transform, opacity;
-        }
-
-        .reveal-left {
-            transform: translateX(-80px);
-        }
-
-        .reveal-right {
-            transform: translateX(80px);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .exp-card {
-            background: var(--glass);
-            border: 1px solid var(--border);
-            padding: 40px;
-            border-radius: 24px;
-            margin-bottom: 30px;
-        }
-
-        .exp-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            margin-bottom: 25px;
-        }
-
-        .exp-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 5px;
-        }
-
-        .company-info {
-            color: var(--accent);
-            font-weight: 600;
-            font-size: 1.1rem;
+        .contact-info a {
+            color: inherit;
             text-decoration: none;
-            transition: 0.3s;
+            transition: color 0.3s;
         }
 
-        .company-info:hover {
-            opacity: 0.8;
-            text-decoration: underline;
-        }
-
-        .date-loc {
-            text-align: right;
-            color: var(--text-dim);
-            font-size: 0.9rem;
-        }
-
-        .role-summary {
-            color: var(--text-main);
-            font-size: 1rem;
-            margin-bottom: 20px;
-            opacity: 0.9;
-        }
-
-        .exp-list {
-            list-style: none;
-            margin-bottom: 25px;
-        }
-
-        .exp-list li {
-            position: relative;
-            padding-left: 20px;
-            margin-bottom: 12px;
-            color: var(--text-dim);
-            font-size: 0.95rem;
-        }
-
-        .exp-list li::before {
-            content: "•";
-            position: absolute;
-            left: 0;
+        .contact-info a:hover {
             color: var(--accent);
         }
 
-        .notable-box {
-            background: rgba(255,255,255,0.02);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 25px;
-            margin-top: 20px;
+        /* Animation Styles */
+        .reveal { 
+            opacity: 0; 
+            transition: all 0.8s cubic-bezier(0.17, 0.55, 0.55, 1); 
+            will-change: transform, opacity; 
         }
-
-        .notable-box h4 {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 15px;
-            letter-spacing: 1px;
+        .reveal-left { transform: translateX(-40px); }
+        .reveal-right { transform: translateX(40px); }
+        .reveal-up { transform: translateY(40px); }
+        .reveal-down { transform: translateY(-40px); }
+        
+        /* State Aktif (Saat di dalam viewport) */
+        .reveal.active { 
+            opacity: 1; 
+            transform: translate(0, 0); 
         }
 
         .skills-marquee {
-            width: 100%;
-            overflow: hidden;
-            padding: 25px 0;
-            background: rgba(255, 255, 255, 0.02);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            margin-bottom: 60px;
-            white-space: nowrap;
+            width: 100%; overflow: hidden; padding: 15px 0;
+            background: rgba(255, 255, 255, 0.01); border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border); margin-bottom: 40px; white-space: nowrap;
         }
 
-        .marquee-content {
-            display: inline-block;
-            animation: marquee 60s linear infinite;
-        }
-
+        .marquee-content { display: inline-block; animation: marquee 60s linear infinite; }
         .marquee-item {
-            display: inline-flex;
-            align-items: center;
-            padding: 0 40px;
-            color: var(--text-main);
-            font-weight: 500;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            display: inline-flex; align-items: center; padding: 0 30px;
+            color: var(--text-main); font-weight: 500; font-size: 0.85rem;
+            text-transform: uppercase; letter-spacing: 1.5px;
+        }
+        .marquee-item::after { content: "✦"; margin-left: 60px; color: var(--accent); opacity: 0.3; }
+
+        @keyframes marquee { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+
+        .skills-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 20px; margin-top: 25px; margin-bottom: 40px;
         }
 
-        .marquee-item::after {
-            content: "✦";
-            margin-left: 80px;
-            color: var(--accent);
-            opacity: 0.5;
+        .skill-group-card {
+            background: var(--glass); border: 1px solid var(--border);
+            border-radius: 20px; padding: 24px; backdrop-filter: blur(5px);
         }
 
-        @keyframes marquee {
-            0% { transform: translateX(-50%); }
-            100% { transform: translateX(0); }
+        .skill-group-card.full-width { grid-column: 1 / -1; }
+        .skill-cat-label {
+            font-size: 0.7rem; font-weight: 700; color: var(--accent);
+            text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 10px; display: block;
+        }
+        .skill-main-title { font-size: 1.6rem; margin-bottom: 15px; color: var(--text-main); }
+        .tag-container { display: flex; flex-wrap: wrap; gap: 8px; }
+        .skill-tag {
+            background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border);
+            padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; color: var(--text-dim);
         }
 
-        section {
-            padding: 60px 20px;
-            max-width: 1000px;
-            margin: 0 auto;
+        .content-card {
+            background: var(--glass); border: 1px solid var(--border);
+            padding: 30px; border-radius: 20px; margin-bottom: 20px; backdrop-filter: blur(5px);
         }
 
-        .section-header h2 {
-            font-family: 'Instrument Serif', serif;
-            font-size: 3.5rem;
-            font-weight: 400;
-            margin-bottom: 40px;
-        }
+        .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; gap: 15px; }
+        .card-header h3 { font-size: 1.35rem; }
+        .sub-header { color: var(--accent); font-weight: 600; font-size: 1rem; }
+        .meta-text { color: var(--text-dim); font-size: 0.85rem; text-align: right; }
+        .edu-id { font-size: 0.75rem; color: var(--text-dim); margin-top: 2px; display: block; opacity: 0.8; }
+        .edu-text-extra { font-size: 0.8rem; color: var(--text-dim); margin-top: 4px; display: block; }
+        .view-link { color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 500; margin-top: 4px; display: inline-block; border-bottom: 1px solid transparent; transition: 0.3s; }
+        .view-link:hover { border-bottom-color: var(--accent); }
 
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            grid-auto-rows: minmax(140px, auto);
-            gap: 15px;
-        }
+        .exp-list { list-style: none; margin-bottom: 8px; }
+        .exp-list li { position: relative; padding-left: 18px; margin-bottom: 5px; color: var(--text-dim); font-size: 0.9rem; }
+        .exp-list li.has-bullet::before { content: "•"; position: absolute; left: 0; color: var(--accent); }
+        .intro-text { margin-bottom: 10px; color: var(--text-dim); font-size: 0.9rem; display: block; }
 
-        .bento-item {
-            background: var(--glass);
-            border: 1px solid var(--border);
-            padding: 24px;
-            border-radius: 24px;
-            display: flex;
-            flex-direction: column;
-            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+        .notable-box { background: rgba(255,255,255,0.015); border: 1px solid var(--border); border-radius: 12px; padding: 18px; margin-top: 15px; }
+        .notable-box h4 { font-size: 0.75rem; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
 
-        .bento-item:hover {
-            border-color: var(--accent);
-            background: rgba(99, 102, 241, 0.05);
-            transform: translateY(-5px);
-        }
-
-        .item-rec { grid-column: span 4; grid-row: span 2; }
-        .item-comben { grid-column: span 8; grid-row: span 2; }
-        .item-dev { grid-column: span 5; grid-row: span 2; }
-        .item-od { grid-column: span 7; grid-row: span 2; }
-        .item-auto { grid-column: span 12; grid-row: span 1; }
-
-        .bento-item h4 {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 8px;
-            letter-spacing: 1.5px;
-            font-weight: 700;
-        }
-
-        .bento-item .cat-title {
-            font-family: 'Instrument Serif', serif;
-            font-size: clamp(1.5rem, 3vw, 2.2rem);
-            margin-bottom: 25px;
-            line-height: 1.1;
-            color: var(--text-main);
-        }
-
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 0;
-            margin-bottom: auto;
-        }
-
-        .tag {
-            background: rgba(255,255,255,0.04);
-            padding: 6px 14px;
-            border-radius: 10px;
-            font-size: 0.8rem;
-            border: 1px solid var(--border);
-            color: var(--text-dim);
-            transition: 0.2s;
-        }
-        
-        .bento-item:hover .tag {
-            border-color: rgba(99, 102, 241, 0.3);
-            color: var(--text-main);
-        }
-
-        .cert-card {
-            background: var(--glass);
-            border: 1px solid var(--border);
-            padding: 20px 30px;
-            border-radius: 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
+        section { padding: 40px 20px; max-width: 1000px; margin: 0 auto; }
+        .section-header h2 { font-size: 2.8rem; margin-bottom: 20px; }
 
         .linkedin-btn {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: #0077b5;
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            transition: 0.3s;
-            box-shadow: 0 10px 20px rgba(0, 119, 181, 0.2);
+            display: inline-flex; align-items: center; gap: 10px; background: #0077b5; color: white;
+            text-decoration: none; padding: 12px 24px; border-radius: 50px; font-weight: 600; font-size: 0.9rem;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(255, 255, 255, 0.1);
         }
+        .linkedin-btn:hover { background: #005f91; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0, 119, 181, 0.3); }
+        .linkedin-btn svg { width: 18px; height: 18px; fill: currentColor; }
 
-        .linkedin-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(0, 119, 181, 0.3);
-            filter: brightness(1.1);
-        }
-
-        footer {
-            padding: 60px 20px;
-            text-align: center;
-            border-top: 1px solid var(--border);
-            color: var(--text-dim);
-            font-size: 0.85rem;
-        }
-
-        @media (max-width: 1024px) {
-            .item-rec { grid-column: span 5; }
-            .item-comben { grid-column: span 7; }
-            .item-dev { grid-column: span 6; }
-            .item-od { grid-column: span 6; }
-        }
+        footer { padding: 40px 20px; text-align: center; border-top: 1px solid var(--border); color: var(--text-dim); font-size: 0.8rem; }
 
         @media (max-width: 850px) {
-            .date-loc { text-align: left; margin-top: 10px; }
-            .exp-card { padding: 25px; }
-            .cert-card { flex-direction: column; align-items: flex-start; gap: 10px; }
-            .reveal-left, .reveal-right { transform: translateY(30px); }
-        }
-
-        @media (max-width: 768px) {
-            .bento-grid { grid-template-columns: 1fr; }
-            .item-rec, .item-comben, .item-dev, .item-od, .item-auto {
-                grid-column: span 1;
-                grid-row: span 1;
-            }
+            .card-header { flex-direction: column; gap: 5px; }
+            .meta-text { text-align: left; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .section-header h2 { font-size: 2.2rem; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Preloader Screen -->
+    <div id="preloader">
+        <div class="loader-logo">Hi, Nice to Meet You !</div>
+        <div class="loader-bar-container">
+            <div id="loader-progress" class="loader-bar"></div>
+        </div>
+    </div>
+
     <div class="bg-glow"></div>
 
     <nav>
         <a href="#about">About</a>
+        <a href="#expertise">Expertise</a>
         <a href="#experience">Experience</a>
-        <a href="#skills">Skills</a>
         <a href="#education">Education</a>
     </nav>
 
     <main>
         <section id="hero">
             <div id="about" style="position: absolute; top: 0;"></div>
-            <div class="profile-container">
-                <img src="Asset/profilpic.jpg" alt="Muhammad Fachrully" class="profile-img">
+            <div class="profile-container reveal reveal-down">
+                <img id="dyn-profile-img" src="Asset/profilpic.jpg" alt="Muhammad Fachrully" class="profile-img">
             </div>
-            <h1>Muhammad Fachrully</h1>
-            <p class="hero-desc">
-                With over 5 years of experience as a Human Resources Generalist, I’ve had the privilege of supporting organizations across key HR functions, including recruitment, talent development, compensation and benefits management, and ensuring compliance with labor regulations. Throughout my career, I’ve collaborated closely with teams to strengthen HR processes in alignment with business needs, enhance employee experience, digitize HR administration, and ensure consistent compliance with organizational policies and labor regulations.
-            </p>
-            <div class="contact-info">
-                <span>📍 South Tangerang, Indonesia</span>
-                <span>✉️ fachrully.muhammad@gmail.com</span>
-                <span>📞 +62895378855908</span>
+            <h1 id="dyn-title" class="reveal reveal-down">Muhammad Fachrully.</h1>
+            <p id="dyn-desc" class="hero-desc reveal reveal-down"></p>
+            <div class="contact-info reveal reveal-down">
+                <span id="dyn-loc">📍</span>
+                <a id="dyn-email-link" href="#">
+                    <span id="dyn-email">✉️</span>
+                </a>
+                <a id="dyn-phone-link" href="#" target="_blank">
+                    <span id="dyn-phone">📞</span>
+                </a>
             </div>
-            
-            <a href="https://www.linkedin.com/in/muhammadfachrully/" target="_blank" class="linkedin-btn">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                </svg>
+            <a id="dyn-linkedin-link" href="#" target="_blank" class="linkedin-btn reveal reveal-down">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                 Connect on LinkedIn
             </a>
         </section>
 
         <div class="skills-marquee">
-            <div class="marquee-content">
-                <span class="marquee-item">HR Web Development</span>
-                <span class="marquee-item">Google Apps Script Automation</span>
-                <span class="marquee-item">HRIS Custom Solutions</span>
-                <span class="marquee-item">Automated Recruitment Systems</span>
-                <span class="marquee-item">Digital Payroll Architecture</span>
-                <span class="marquee-item">HR Dashboard & Analytics</span>
-                <span class="marquee-item">Compensation & Benefits Digitization</span>
-                <span class="marquee-item">Employee Portal Development</span>
-                <span class="marquee-item">Workflow Optimization</span>
-                <span class="marquee-item">Labor Law Algorithm Compliance</span>
-                <span class="marquee-item">HR Web Development</span>
-                <span class="marquee-item">Google Apps Script Automation</span>
-                <span class="marquee-item">HRIS Custom Solutions</span>
-                <span class="marquee-item">Automated Recruitment Systems</span>
-                <span class="marquee-item">Digital Payroll Architecture</span>
-                <span class="marquee-item">HR Dashboard & Analytics</span>
-                <span class="marquee-item">Compensation & Benefits Digitization</span>
-                <span class="marquee-item">Employee Portal Development</span>
-                <span class="marquee-item">Workflow Optimization</span>
-                <span class="marquee-item">Labor Law Algorithm Compliance</span>
-            </div>
+            <div id="dyn-marquee" class="marquee-content"></div>
         </div>
 
-        <section id="experience">
-            <div class="section-header">
-                <h2>Working Experience</h2>
-            </div>
-
-            <div class="exp-card reveal reveal-left">
-                <div class="exp-header">
-                    <div>
-                        <h3>HR Executive</h3>
-                        <a href="https://hr-deh.com/" target="_blank" class="company-info">PT DEH KREASI SOLUSINDO (HR.DEH)</a>
-                    </div>
-                    <div class="date-loc">May 2025 — Present<br>East Jakarta</div>
-                </div>
-                <p class="role-summary">As an HR in a consultant firm, I focus on developing and delivering training materials, building HR tools, and designing AI frameworks tailored to client needs. This role is executed on a part-time/project basis, with key responsibilities including:</p>
-                <ul class="exp-list">
-                    <li>Designing and delivering training programs tailored to diverse client needs.</li>
-                    <li>Developing HR products and AI-enabled solutions to support organizational processes.</li>
-                    <li>Creating structured learning materials that are practical, scalable, and client-oriented.</li>
-                    <li>Working with subject matter experts to ensure the training content remains relevant and practical.</li>
-                    <li>Conducting research on HR trends and technologies to continuously improve training content and product offerings.</li>
-                </ul>
-                <div class="notable-box">
-                    <h4>Notable Projects</h4>
-                    <ul class="exp-list" style="margin-bottom:0;">
-                        <li><strong>Generative AI Training:</strong> Designed generative AI training material for the Marketing team at PT Surya Madistrindo (a subsidiary of Gudang Garam), highlighting practical use of tools such as ChatGPT, Gemini, and structured prompting.</li>
-                        <li><strong>Recruitment Digitization:</strong> Developed training content and delivered sessions on AI-driven recruitment digitization, covering end-to-end recruitment process transformation using AI tools.</li>
-                        <li><strong>Monev System:</strong> Developed a Monitoring and Evaluation (Monev) System for the Ministry of Foreign Affairs (Kemenlu), supporting structured performance tracking and data-driven decision-making.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="exp-card reveal reveal-right">
-                <div class="exp-header">
-                    <div>
-                        <h3>Human Resources Business Partner</h3>
-                        <a href="https://www.fabron.id/" target="_blank" class="company-info">PT FAKTA BERONTAK KREATIF (FABRON)</a>
-                    </div>
-                    <div class="date-loc">May 2025 — July 2025<br>East Jakarta</div>
-                </div>
-                <p class="role-summary">As an HR Business Partner on a project-based assignment from HR.DEH for Fabron, I supported the organization during a strategic transformation phase. Key responsibilities included:</p>
-                <ul class="exp-list">
-                    <li>Handled end-to-end recruitment to ensure timely and effective talent acquisition.</li>
-                    <li>Partnering with leadership to align people strategies with business objectives.</li>
-                    <li>Standardized HR procedures to ensure alignment, consistency, and regulatory compliance.</li>
-                    <li>Designed and implemented digital HR infrastructure and administrative processes to improve efficiency and data accuracy.</li>
-                    <li>Providing data-driven insights and advisory on employee relations, labor compliance, and organizational planning.</li>
-                </ul>
-            </div>
-
-            <div class="exp-card reveal reveal-left">
-                <div class="exp-header">
-                    <div>
-                        <h3>Human Capital Operations Lead</h3>
-                        <a href="https://shafwahgroup.com/" target="_blank" class="company-info">PT SHAFWAH CORPORA INDONESIA (SHAFWAH GROUP)</a>
-                    </div>
-                    <div class="date-loc">January 2023 — December 2024<br>South Jakarta</div>
-                </div>
-                <p class="role-summary">Overseeing HR operations across 16 subsidiaries covering Travel, Mining, Property, Forestry, Technology, and Fisheries industries.</p>
-                <ul class="exp-list">
-                    <li>Managed the Human Capital Operations Team.</li>
-                    <li>Worked closely with the Head of HC & Legal to ensure actions align with company goals and labor regulations.</li>
-                    <li>Managed employee compensation and benefits, including payroll and BPJS for all companies.</li>
-                    <li>Developed and implemented automation and digitization for the end-to-end employee administrative cycle.</li>
-                    <li>Ensured consistent implementation of HR policies across holding companies.</li>
-                    <li>Managed recruitment at the head office and supported People Development team's data management.</li>
-                </ul>
-                <div class="notable-box">
-                    <h4>Notable Projects</h4>
-                    <ul class="exp-list" style="margin-bottom:0;">
-                        <li><strong>HRIS Implementation:</strong> Streamlined end-to-end HR administrative activities across the organization.</li>
-                        <li><strong>Centralized Payroll:</strong> Designed a system consolidating payroll data from all subsidiaries into a standardized framework.</li>
-                        <li><strong>Incentive System:</strong> Designed and implemented performance-based incentives for sales and marketing teams.</li>
-                        <li><strong>Contract Automation:</strong> Led the digitization of employment contracts to reduce manual processing.</li>
-                        <li><strong>Talent Mapping:</strong> Conducted annual appraisals using the Nine-Box Model.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="exp-card reveal reveal-right">
-                <div class="exp-header">
-                    <div>
-                        <h3>Senior People Operations</h3>
-                        <a href="https://pahamify.com/" target="_blank" class="company-info">PT PAHAMI CIPTA EDUKASI (PAHAMIFY)</a>
-                    </div>
-                    <div class="date-loc">January 2021 — July 2022<br>Bogor City</div>
-                </div>
-                <p class="role-summary">Pahamify (YC W20) is a fast-growing EdTech startup focused on bringing joy to learning through gamification. My role included:</p>
-                <ul class="exp-list">
-                    <li>Supervised daily operations of the People Operations & Services team.</li>
-                    <li>Planned quarterly OKRs to align with People Division and Company Objectives.</li>
-                    <li>Analyzed data reports on Human Capital Financial Aspects (HCVA, HCROI, HCRF).</li>
-                    <li>Assisted in developing company policies and controlling manpower-related costs.</li>
-                    <li>Handled senior & managerial level recruitment and created HR program dashboards.</li>
-                </ul>
-                <div class="notable-box">
-                    <h4>Notable Projects</h4>
-                    <ul class="exp-list" style="margin-bottom:0;">
-                        <li><strong>HRIS Adoption:</strong> Implemented the use of HRIS in HR administration activities.</li>
-                        <li><strong>Benefit Programs:</strong> Developed healthcare reimbursement and Early Wage Access (EWA).</li>
-                        <li><strong>Payroll Tool:</strong> Developed a projection tool for manpower cost controlling.</li>
-                        <li><strong>Process Revamp:</strong> Shifted HR routines from paper-based to technology-driven operations.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="exp-card reveal reveal-left">
-                <div class="exp-header">
-                    <div>
-                        <h3>People Operations & Services</h3>
-                        <a href="https://pahamify.com/" target="_blank" class="company-info">PT PAHAMI CIPTA EDUKASI (PAHAMIFY)</a>
-                    </div>
-                    <div class="date-loc">August 2019 — December 2020<br>Bogor City</div>
-                </div>
-                <p class="role-summary">Early career focus on scaling a startup workforce and stabilizing HR administration:</p>
-                <ul class="exp-list">
-                    <li>Handled end-to-end recruitment and employee lifecycle (onboarding to offboarding).</li>
-                    <li>Managed HR Administration, contracts, payroll, and employee databases.</li>
-                    <li>Provided office supplies, GA budgeting, and IT support to employees.</li>
-                    <li>Managed BPJS Kesehatan & Ketenagakerjaan and created Employer Branding content for LinkedIn.</li>
-                </ul>
-                <div class="notable-box">
-                    <h4>Notable Projects</h4>
-                    <ul class="exp-list" style="margin-bottom:0;">
-                        <li><strong>Rapid Hiring:</strong> Successfully filled 20+ positions (Creative, Sales, Tech) within 6 months with 80% SLA success.</li>
-                        <li><strong>Legal Compliance:</strong> Assisted in creating and ratifying company regulations with the Ministry of Manpower in less than 3 months.</li>
-                    </ul>
-                </div>
-            </div>
+        <section id="expertise">
+            <div class="section-header reveal reveal-left"><h2>Professional Expertise</h2></div>
+            <div id="dyn-skills-grid" class="skills-grid"></div>
         </section>
 
-        <section id="skills">
-            <div class="section-header">
-                <h2>Professional Skills</h2>
-            </div>
-            
-            <div class="bento-grid">
-                <div class="bento-item item-comben reveal reveal-right">
-                    <h4>Total Rewards</h4>
-                    <div class="cat-title">Compensation and Benefits Management</div>
-                    <div class="tags">
-                        <span class="tag">Digital Payroll Systems</span>
-                        <span class="tag">BPJS Compliance</span>
-                        <span class="tag">Performance-Based Incentives</span>
-                        <span class="tag">Benefit Strategy</span>
-                        <span class="tag">Manpower Cost Control</span>
-                        <span class="tag">Salary Structure</span>
-                    </div>
-                </div>
-
-                <div class="bento-item item-rec reveal reveal-left">
-                    <h4>Talent Acquisition</h4>
-                    <div class="cat-title">Recruitment Strategy</div>
-                    <div class="tags">
-                        <span class="tag">End-to-End Recruitment</span>
-                        <span class="tag">Executive Search</span>
-                        <span class="tag">Employer Branding</span>
-                        <span class="tag">SLA Performance</span>
-                        <span class="tag">Hiring Transformation</span>
-                    </div>
-                </div>
-
-                <div class="bento-item item-od reveal">
-                    <h4>Strategy & Alignment</h4>
-                    <div class="cat-title">Organizational Development</div>
-                    <div class="tags">
-                        <span class="tag">Nine-Box Talent Mapping</span>
-                        <span class="tag">OKR & KPI Design</span>
-                        <span class="tag">Labor Law Compliance</span>
-                        <span class="tag">Policy Frameworks</span>
-                        <span class="tag">Employee Relations</span>
-                        <span class="tag">Change Management</span>
-                    </div>
-                </div>
-
-                <div class="bento-item item-dev reveal reveal-left">
-                    <h4>Growth & Learning</h4>
-                    <div class="cat-title">People Development</div>
-                    <div class="tags">
-                        <span class="tag">Training & Curriculum Design</span>
-                        <span class="tag">Monev Systems</span>
-                        <span class="tag">Structured Learning Paths</span>
-                        <span class="tag">Skill Gap Analysis</span>
-                    </div>
-                </div>
-
-                <div class="bento-item item-auto reveal">
-                    <h4>Additional Expertise</h4>
-                    <div class="cat-title">Human Resources Automation</div>
-                    <div class="tags">
-                        <span class="tag">Google Apps Script (GAS)</span>
-                        <span class="tag">HR Web Development</span>
-                        <span class="tag">HRIS Customization</span>
-                        <span class="tag">Workflow Digitization</span>
-                    </div>
-                </div>
-            </div>
+        <section id="experience">
+            <div class="section-header reveal reveal-left"><h2>Work Experience</h2></div>
+            <div id="dyn-experience-container"></div>
         </section>
 
         <section id="education">
-            <div class="section-header">
-                <h2>Education & Certifications</h2>
-            </div>
-            <div class="exp-card" style="padding: 30px;">
-                <div class="exp-header" style="margin-bottom: 0;">
-                    <div>
-                        <h3 style="font-size: 1.2rem;">Bachelor's Degree in Psychology</h3>
-                        <span style="font-size: 1rem; color: var(--accent);">Syarif Hidayatullah Jakarta Islamic State University</span>
-                    </div>
-                    <div class="date-loc">Graduated 2018</div>
-                </div>
-            </div>
-
-            <div class="cert-card">
-                <div>
-                    <strong>Foundations: Data, Data, Everywhere</strong>
-                    <div style="color: var(--text-dim); font-size: 0.85rem;">Coursera | Jul 2022</div>
-                </div>
-                <span style="font-size: 0.8rem; opacity: 0.7;">ID: 5VZXCMBB8PGZ</span>
-            </div>
-
-            <div class="cert-card">
-                <div>
-                    <strong>English Certificate (C1-Advanced)</strong>
-                    <div style="color: var(--text-dim); font-size: 0.85rem;">EF SET | Score: 67/100 | Apr 2019</div>
-                </div>
-                <a href="https://cert.efset.org/CjfCEh" target="_blank" style="color: var(--accent); text-decoration: none; font-size: 0.85rem;">View Certificate</a>
-            </div>
+            <div class="section-header reveal reveal-left"><h2>Education & Certifications</h2></div>
+            <div id="dyn-education-container"></div>
         </section>
     </main>
 
-    <footer>
-        <p>© 2026 Muhammad Fachrully • Professional HR Specialist</p>
-    </footer>
+    <footer><p>© 2026 Muhammad Fachrully • HR Transformation Specialist</p></footer>
 
     <script>
-        const observerOptions = {
-            root: null,
-            threshold: 0.1,
-            rootMargin: "0px 0px -50px 0px"
-        };
+        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw6umy7anEpG1DDJwrwByE2XjXX3Riledk1JXutzrHDF_3Rc90O-tgvDNoxORDMioP2LQ/exec';
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                } else {
-                    entry.target.classList.remove('active');
+        function updateProgress(percent) {
+            const bar = document.getElementById('loader-progress');
+            if (bar) bar.style.width = percent + '%';
+        }
+
+        function applyStyles(setting) {
+            if (!setting) return;
+            const root = document.documentElement;
+            const mapping = {
+                'Main Font Family': '--font-main',
+                'Heading Font Family': '--font-heading',
+                'Background Color': '--bg',
+                'Surface Color': '--surface',
+                'Accent Color': '--accent',
+                'Text Main Color': '--text-main',
+                'Text Dim Color': '--text-dim',
+                'Glow Effect Color': '--glow-color'
+            };
+
+            setting.forEach(row => {
+                const param = row[0];
+                const value = row[1];
+                if (mapping[param] && value) {
+                    let finalValue = value;
+                    if (param.includes('Font')) finalValue = `'${value}', sans-serif`;
+                    root.style.setProperty(mapping[param], finalValue);
                 }
             });
-        }, observerOptions);
+        }
 
-        document.querySelectorAll('.reveal').forEach(el => {
-            observer.observe(el);
-        });
+        function processTextBody(text) {
+            if (!text) return '';
+            const lines = text.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+            let htmlOutput = '', inList = false;
+            lines.forEach(line => {
+                const isBullet = line.startsWith('•') || line.startsWith('-');
+                if (isBullet) {
+                    if (!inList) { htmlOutput += '<ul class="exp-list">'; inList = true; }
+                    htmlOutput += `<li class="has-bullet">${line.replace(/^[•-]\s*/, '')}</li>`;
+                } else {
+                    if (inList) { htmlOutput += '</ul>'; inList = false; }
+                    htmlOutput += `<span class="intro-text">${line}</span>`;
+                }
+            });
+            if (inList) htmlOutput += '</ul>';
+            return htmlOutput;
+        }
+
+        async function init() {
+            updateProgress(10);
+            try {
+                const response = await fetch(APPS_SCRIPT_URL);
+                updateProgress(50);
+                const data = await response.json();
+                updateProgress(80);
+
+                if (data.Setting) applyStyles(data.Setting);
+
+                if (data.Hero) {
+                    const h = data.Hero;
+                    const profileImg = document.getElementById('dyn-profile-img');
+                    const photoUrl = h['URL Photo'];
+                    if (photoUrl && photoUrl.trim() !== "" && photoUrl.trim() !== "undefined") {
+                        profileImg.src = photoUrl.trim();
+                    }
+                    document.getElementById('dyn-title').innerText = h['Nama'] || 'Muhammad Fachrully';
+                    document.getElementById('dyn-desc').innerText = h['Deskripsi'] || '';
+                    document.getElementById('dyn-loc').innerText = `📍 ${h['Lokasi'] || ''}`;
+                    
+                    // Email logic
+                    const emailVal = h['Email'] || '';
+                    document.getElementById('dyn-email').innerText = `✉️ ${emailVal}`;
+                    const emailLink = document.getElementById('dyn-email-link');
+                    if (emailLink && emailVal) {
+                        emailLink.href = `mailto:${emailVal.trim()}`;
+                    }
+
+                    // Phone logic
+                    const phoneVal = h['WA Phone'] || '';
+                    document.getElementById('dyn-phone').innerText = `📞 ${phoneVal}`;
+                    const phoneLink = document.getElementById('dyn-phone-link');
+                    if (phoneLink && phoneVal) {
+                        // Clean phone number for WhatsApp URL (numbers only)
+                        const cleanedPhone = phoneVal.replace(/\D/g, '');
+                        phoneLink.href = `https://wa.me/${cleanedPhone}`;
+                    }
+
+                    const lnk = document.getElementById('dyn-linkedin-link');
+                    if (lnk && h['Linkedin']) lnk.href = h['Linkedin'];
+                }
+
+                if (data.Skills) {
+                    const marquee = document.getElementById('dyn-marquee');
+                    const list = data.Skills.map(r => r[0]).filter(Boolean);
+                    [...list, ...list].forEach(item => {
+                        const span = document.createElement('span');
+                        span.className = 'marquee-item';
+                        span.innerText = item;
+                        marquee.appendChild(span);
+                    });
+                }
+
+                const skillSetData = data['Professional Expertise'] || data['Skill Set'];
+                if (skillSetData) {
+                    const grid = document.getElementById('dyn-skills-grid');
+                    skillSetData.forEach((row, idx) => {
+                        if(row[0] && row[1]) {
+                            const card = document.createElement('div');
+                            const isLast = idx === skillSetData.length - 1 && skillSetData.length % 2 !== 0;
+                            card.className = `skill-group-card reveal reveal-up ${isLast ? 'full-width' : ''}`;
+                            const parts = row[1].split(':');
+                            const tags = parts[1] ? parts[1].split(',').map(t => `<span class="skill-tag">${t.trim()}</span>`).join('') : '';
+                            card.innerHTML = `<span class="skill-cat-label">${row[0]}</span><h3 class="skill-main-title">${parts[0].trim()}</h3><div class="tag-container">${tags}</div>`;
+                            grid.appendChild(card);
+                        }
+                    });
+                }
+
+                if (data.Experience) {
+                    const container = document.getElementById('dyn-experience-container');
+                    data.Experience.forEach((row, index) => {
+                        if(row[0]) {
+                            const card = document.createElement('div');
+                            card.className = `content-card reveal ${index % 2 === 0 ? 'reveal-left' : 'reveal-right'}`;
+                            card.innerHTML = `
+                                <div class="card-header">
+                                    <div><h3>${row[0]}</h3><div class="sub-header">${row[1]}</div></div>
+                                    <div class="meta-text"><div>${row[2]}</div><div>${row[3]}</div></div>
+                                </div>
+                                <div class="card-body">${processTextBody(row[4])}</div>
+                                ${row[5] ? `<div class="notable-box"><h4>Key Projects</h4>${processTextBody(row[5])}</div>` : ''}
+                            `;
+                            container.appendChild(card);
+                        }
+                    });
+                }
+
+                if (data.Education) {
+                    const container = document.getElementById('dyn-education-container');
+                    data.Education.forEach((row, index) => {
+                        if(row[0]) {
+                            const card = document.createElement('div');
+                            card.className = `content-card reveal reveal-up`;
+                            const extraVal = row[4] ? row[4].trim() : '';
+                            const isLink = extraVal.toLowerCase().startsWith('http');
+                            let extraContent = isLink ? `<a href="${extraVal}" target="_blank" class="view-link">View Certificate</a>` : (extraVal !== '' ? `<span class="edu-text-extra">${extraVal}</span>` : '');
+                            card.innerHTML = `
+                                <div class="card-header">
+                                    <div><h3>${row[0]}</h3><div class="sub-header">${row[1]}</div>${row[3] ? `<span class="edu-id">${row[3]}</span>` : ''}</div>
+                                    <div class="meta-text"><div>${row[2] || ''}</div>${extraContent}</div>
+                                </div>
+                            `;
+                            container.appendChild(card);
+                        }
+                    });
+                }
+
+                setupRevealObserver();
+                updateProgress(100);
+                
+                setTimeout(() => {
+                    document.body.classList.add('loaded');
+                }, 500);
+
+            } catch (e) { 
+                console.error("Error loading data:", e);
+                document.body.classList.add('loaded');
+            }
+        }
+
+        function setupRevealObserver() {
+            const observerOptions = {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    } else {
+                        entry.target.classList.remove('active');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        }
+
+        window.onload = init;
     </script>
-
 </body>
 </html>
-
-
